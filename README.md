@@ -25,13 +25,11 @@ Además necesitarás eGit, gitBash o similares_
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+_Exclusivamente..._
 
-* [Eclipse](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
+* [Eclipse](https://www.eclipse.org/downloads/) - IDE Utilizado
 
 ## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
 * **Adrián Garrido Blanco** - [Zackysh](https://github.com/Zackysh)
 * **Jonathan Ruíz Olivar** - [Jonhy-Hero](https://github.com/Jony-Hero)
