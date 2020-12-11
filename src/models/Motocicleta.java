@@ -27,9 +27,10 @@ public class Motocicleta extends Vehiculo{
 
 	@Override
 	public String toString() {
-		return "Motocicleta [marcaEscape=" + marcaEscape + ", color=" + color + ", matricula=" + matricula + ", marca="
-				+ marca + ", modelo=" + modelo + ", velocidadActual=" + velocidadActual + ", velocidadMaxima="
-				+ velocidadMaxima + ", telefonoDueño=" + telefonoDueño + "]";
+		return "Motocicleta:\n"
+				+ "MarcaEscape: " + marcaEscape + ", Color: " + color + ", Matricula: " + matricula + ", Marca: "
+				+ marca + "\nModelo: " + modelo + ", VelocidadActual: " + velocidadActual+"Km/h" + ", VelocidadMaxima: "
+				+ velocidadMaxima+"Km/h" + ", TelefonoDueño: " + telefonoDueño ;
 	}
 
 

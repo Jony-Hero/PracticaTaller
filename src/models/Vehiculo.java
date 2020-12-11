@@ -12,16 +12,15 @@ public abstract class Vehiculo implements Movible, Arrancable {
 	protected double velocidadActual;
 	protected double velocidadMaxima;
 	protected int telefonoDueño;
-<<<<<<< HEAD
+
 	//Es el constructor de los atributos de Vehiculo.
-	public Vehiculo(String color, String matricula, String marca, String modelo, 
-=======
+	
+
 	public int prueba;
 
 	// Es el constructor de los atributos de Vehiculo.
-	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadActual,
->>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
-			double velocidadMaxima, int telefonoDueño) {
+	public Vehiculo(String color, String matricula, String marca, String modelo, 
+	double velocidadMaxima, int telefonoDueño) {
 		super();
 		this.prueba = 2;
 		this.color = color;
@@ -97,16 +96,11 @@ public abstract class Vehiculo implements Movible, Arrancable {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void parar() {
 			System.out.println("El Vehículo esta parado");
 		}
-=======
-	public void Parar() {
-		System.out.println("El Vehículo esta parado");
-	}
 
->>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
+
 	@Override
 	public void acelerar(double v) {
 		this.velocidadActual += v;
@@ -118,12 +112,11 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.velocidadActual -= v;
 		System.out.println("La velocidad Actual es de " + velocidadActual);
 	}
-<<<<<<< HEAD
+
 	@Override
 	public void frenarHastaParar() {
 		this.velocidadActual = 0;
 		System.out.println("El vehículo a frenado hasta pararse ");
 	}
-=======
->>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
+
 }
