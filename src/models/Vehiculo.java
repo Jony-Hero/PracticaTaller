@@ -1,20 +1,29 @@
 package models;
+
 import Interfaces.Arrancable;
 import Interfaces.Movible;
 
-public abstract class Vehiculo implements Movible,Arrancable {
-	//Son los atributos que debe tener un Vehiculo.
-	protected String color; 
+public abstract class Vehiculo implements Movible, Arrancable {
+	// Son los atributos que debe tener un Vehiculo.
+	protected String color;
 	protected String matricula;
 	protected String marca;
 	protected String modelo;
 	protected double velocidadActual;
 	protected double velocidadMaxima;
 	protected int telefonoDueño;
+<<<<<<< HEAD
 	//Es el constructor de los atributos de Vehiculo.
 	public Vehiculo(String color, String matricula, String marca, String modelo, 
+=======
+	public int prueba;
+
+	// Es el constructor de los atributos de Vehiculo.
+	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadActual,
+>>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
 			double velocidadMaxima, int telefonoDueño) {
 		super();
+		this.prueba = 2;
 		this.color = color;
 		this.matricula = matricula;
 		this.marca = marca;
@@ -23,6 +32,7 @@ public abstract class Vehiculo implements Movible,Arrancable {
 		this.velocidadMaxima = velocidadMaxima;
 		this.telefonoDueño = telefonoDueño;
 	}
+
 // Estos son los setter y getter de los atributos de Vehiculo.
 	public String getColor() {
 		return color;
@@ -79,29 +89,41 @@ public abstract class Vehiculo implements Movible,Arrancable {
 	public void setTelefonoDueño(int telefonoDueño) {
 		this.telefonoDueño = telefonoDueño;
 	}
+
 	// Estos de aquí son los metodos que implementamos de las interfaces
 	@Override
 	public void arrancar() {
 		System.out.println("El Vehículo esta arrancado");
 	}
+
 	@Override
+<<<<<<< HEAD
 	public void parar() {
 			System.out.println("El Vehículo esta parado");
 		}
+=======
+	public void Parar() {
+		System.out.println("El Vehículo esta parado");
+	}
+
+>>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
 	@Override
 	public void acelerar(double v) {
 		this.velocidadActual += v;
-		System.out.println("La velocidad Actual es de " +velocidadActual);
+		System.out.println("La velocidad Actual es de " + velocidadActual);
 	}
-	
+
 	@Override
 	public void frenar(double v) {
 		this.velocidadActual -= v;
-		System.out.println("La velocidad Actual es de " +velocidadActual);
+		System.out.println("La velocidad Actual es de " + velocidadActual);
 	}
+<<<<<<< HEAD
 	@Override
 	public void frenarHastaParar() {
 		this.velocidadActual = 0;
 		System.out.println("El vehículo a frenado hasta pararse ");
 	}
+=======
+>>>>>>> 93880ebe85ffb88a9d161b6ff7d113d4c113ebdb
 }
