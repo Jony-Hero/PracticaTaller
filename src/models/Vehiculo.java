@@ -12,14 +12,14 @@ public abstract class Vehiculo implements Movible,Arrancable {
 	protected double velocidadMaxima;
 	protected int telefonoDueño;
 	//Es el constructor de los atributos de Vehiculo.
-	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadActual,
+	public Vehiculo(String color, String matricula, String marca, String modelo, 
 			double velocidadMaxima, int telefonoDueño) {
 		super();
 		this.color = color;
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.velocidadActual = velocidadActual;
+		this.velocidadActual = 0;
 		this.velocidadMaxima = velocidadMaxima;
 		this.telefonoDueño = telefonoDueño;
 	}
@@ -81,23 +81,27 @@ public abstract class Vehiculo implements Movible,Arrancable {
 	}
 	// Estos de aquí son los metodos que implementamos de las interfaces
 	@Override
-	public void Arrancar() {
+	public void arrancar() {
 		System.out.println("El Vehículo esta arrancado");
 	}
 	@Override
-	public void Parar() {
+	public void parar() {
 			System.out.println("El Vehículo esta parado");
 		}
 	@Override
-	public void Acelerar(double v) {
+	public void acelerar(double v) {
 		this.velocidadActual += v;
 		System.out.println("La velocidad Actual es de " +velocidadActual);
 	}
 	
 	@Override
-	public void Frenar(double v) {
+	public void frenar(double v) {
 		this.velocidadActual -= v;
 		System.out.println("La velocidad Actual es de " +velocidadActual);
 	}
-
+	@Override
+	public void frenarHastaParar() {
+		this.velocidadActual = 0;
+		System.out.println("El vehículo a frenado hasta pararse ");
+	}
 }

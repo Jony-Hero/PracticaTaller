@@ -2,7 +2,8 @@ package Interfaces;
 
 public interface Arrancable {
 
-	public abstract void Arrancar();
-	public abstract void Parar();
+	public abstract void arrancar();
+	public abstract void parar();
+	
 	
 }

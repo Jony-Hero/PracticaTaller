@@ -41,7 +41,12 @@ public class Taller {
 	}
 	
 	public void cambiarExcape(String matricula, String nueva) {
-		lista
+		for (Object object : listaV_Averiados) {
+			if(object == matricula) {
+				
+			}
+			
+		}
 	}
 	
 }
