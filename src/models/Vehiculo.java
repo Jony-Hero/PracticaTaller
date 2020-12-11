@@ -11,18 +11,12 @@ public abstract class Vehiculo implements Movible, Arrancable {
 	protected String modelo;
 	protected double velocidadActual;
 	protected double velocidadMaxima;
-	protected int telefonoDueño;
-
-	//Es el constructor de los atributos de Vehiculo.
-	
-
-	public int prueba;
+	protected String telefonoDueño;
 
 	// Es el constructor de los atributos de Vehiculo.
-	public Vehiculo(String color, String matricula, String marca, String modelo, 
-	double velocidadMaxima, int telefonoDueño) {
+	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadMaxima,
+			String telefonoDueño) {
 		super();
-		this.prueba = 2;
 		this.color = color;
 		this.matricula = matricula;
 		this.marca = marca;
@@ -32,7 +26,7 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.telefonoDueño = telefonoDueño;
 	}
 
-// Estos son los setter y getter de los atributos de Vehiculo.
+	// Estos son los setter y getter de los atributos de Vehiculo.
 	public String getColor() {
 		return color;
 	}
@@ -81,11 +75,11 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.velocidadMaxima = velocidadMaxima;
 	}
 
-	public int getTelefonoDueño() {
+	public String getTelefonoDueño() {
 		return telefonoDueño;
 	}
 
-	public void setTelefonoDueño(int telefonoDueño) {
+	public void setTelefonoDueño(String telefonoDueño) {
 		this.telefonoDueño = telefonoDueño;
 	}
 
@@ -97,9 +91,8 @@ public abstract class Vehiculo implements Movible, Arrancable {
 
 	@Override
 	public void parar() {
-			System.out.println("El Vehículo esta parado");
-		}
-
+		System.out.println("El Vehículo esta parado");
+	}
 
 	@Override
 	public void acelerar(double v) {

@@ -6,10 +6,35 @@ import models.Taller;
 
 public class Menus {
 	
-	public static Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
+	private Taller taller;
 	
-	public static void cambiarEscape(Taller taller) {
+	public Menus(Taller taller) {
+		this.taller = taller;
+	}
+	
+	// MENUS
+	public void menuPrincipal() {
 		
+	}
+	
+	public void subMenuInsertarVehiculo() {
+		
+	}
+	
+	public void subMenuRepararVehiculo() {
+		
+	}
+	
+	public void subMenuListarVehiculos() {
+		
+	}
+	
+	public void menuEntregarVehiculo() {
+		
+	}
+	
+	public void cambiarEscape() {		
 		String mtrMoto;
 		String marcaEscape;
 		
@@ -23,12 +48,21 @@ public class Menus {
 		} while(mtrMoto.isBlank());
 		
 		do {
-			marcaEscape = sc.nextLine();	
+			marcaEscape = sc.nextLine();
 			if(marcaEscape.isBlank())
 				System.out.println("Introduzca una matrícula, por favor.");
 		} while(marcaEscape.isBlank());
 		
 		taller.cambiarExcape(mtrMoto, marcaEscape);
-		
+	}
+	
+	// MÉTODOS
+	
+	/**
+	 * Método que pedira al usuario la matrícula de un Vehículo.
+	 * @return
+	 */
+	public String pedirVehiculo() {
+		return "";
 	}
 }
