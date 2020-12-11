@@ -1,20 +1,24 @@
 package models;
+
 import Interfaces.Arrancable;
 import Interfaces.Movible;
 
-public abstract class Vehiculo implements Movible,Arrancable {
-	//Son los atributos que debe tener un Vehiculo.
-	protected String color; 
+public abstract class Vehiculo implements Movible, Arrancable {
+	// Son los atributos que debe tener un Vehiculo.
+	protected String color;
 	protected String matricula;
 	protected String marca;
 	protected String modelo;
 	protected double velocidadActual;
 	protected double velocidadMaxima;
 	protected int telefonoDueño;
-	//Es el constructor de los atributos de Vehiculo.
+	public int prueba;
+
+	// Es el constructor de los atributos de Vehiculo.
 	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadActual,
 			double velocidadMaxima, int telefonoDueño) {
 		super();
+		this.prueba = 2;
 		this.color = color;
 		this.matricula = matricula;
 		this.marca = marca;
@@ -23,6 +27,7 @@ public abstract class Vehiculo implements Movible,Arrancable {
 		this.velocidadMaxima = velocidadMaxima;
 		this.telefonoDueño = telefonoDueño;
 	}
+
 // Estos son los setter y getter de los atributos de Vehiculo.
 	public String getColor() {
 		return color;
@@ -79,25 +84,27 @@ public abstract class Vehiculo implements Movible,Arrancable {
 	public void setTelefonoDueño(int telefonoDueño) {
 		this.telefonoDueño = telefonoDueño;
 	}
+
 	// Estos de aquí son los metodos que implementamos de las interfaces
 	@Override
 	public void Arrancar() {
 		System.out.println("El Vehículo esta arrancado");
 	}
+
 	@Override
 	public void Parar() {
-			System.out.println("El Vehículo esta parado");
-		}
+		System.out.println("El Vehículo esta parado");
+	}
+
 	@Override
 	public void Acelerar(double v) {
 		this.velocidadActual += v;
-		System.out.println("La velocidad Actual es de " +velocidadActual);
+		System.out.println("La velocidad Actual es de " + velocidadActual);
 	}
-	
+
 	@Override
 	public void Frenar(double v) {
 		this.velocidadActual -= v;
-		System.out.println("La velocidad Actual es de " +velocidadActual);
+		System.out.println("La velocidad Actual es de " + velocidadActual);
 	}
-
 }

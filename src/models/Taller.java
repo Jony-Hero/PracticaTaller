@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Taller {
-	ArrayList<Object> listaV;
-	List<Object> listaV_Averiados;
-	List<Object> listaV_Reparados;
 	
+	private ArrayList<Vehiculo> listaV;
+	private List<Vehiculo> listaV_Averiados;
+	private List<Vehiculo> listaV_Reparados;	
 	
-	public void insertarVAveriado(Object v) {
+	public void insertarVAveriado(Vehiculo v) {
 		if(listaV_Averiados.contains(v))
 			System.out.println("El vehículo que se intenta insertar ya existe en la lista.");
 		else
@@ -25,8 +25,7 @@ public class Taller {
 		System.out.println(listaV_Reparados);
 	}
 	
-	public void listarMotocicletas() {
-		
+	public void listarMotocicletas() {	
 		System.out.println("Motocicletas averiadas:");
 		for (Object object : listaV_Averiados) {
 			if(object instanceof Object)
@@ -41,7 +40,8 @@ public class Taller {
 	}
 	
 	public void cambiarExcape(String matricula, String nueva) {
-		lista
+		// TODO Usar el método cambiar escape de motocicleta
+		listarMotocicletas();
 	}
 	
 }
