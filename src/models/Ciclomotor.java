@@ -3,8 +3,8 @@ package models;
 public class Ciclomotor extends Vehiculo {
 
 	public Ciclomotor(String color, String matricula, String marca, String modelo, double velocidadMaxima,
-			String telefonoDueño) {
-		super(color, matricula, marca, modelo, velocidadMaxima, telefonoDueño);
+			String telefonoOwner) {
+		super(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner);
 
 	}
 
@@ -12,7 +12,7 @@ public class Ciclomotor extends Vehiculo {
 	public String toString() {
 		return "Ciclomotor[Matricula: " + matricula + ", Marca: " + marca + ", Modelo: " + modelo + ", Color: " + color
 				+ ", Velocidad Actual: " + velocidadActual + "km/h" + ", Velocidad Máxima: " + velocidadMaxima + "Km/h"
-				+ ", Telefono Dueño: " + telefonoDueño + "]";
+				+ ", Telefono Dueño: " + telefonoOwner + "]";
 	}
 
 //	@Override

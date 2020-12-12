@@ -2,7 +2,11 @@ package views;
 
 import java.util.Scanner;
 
+import models.Ciclomotor;
+import models.Coche;
+import models.Motocicleta;
 import models.Taller;
+import utils.VarUtils;
 
 public class Menus {
 
@@ -17,14 +21,22 @@ public class Menus {
 		System.out.println();
 	}
 
+	
+
 	// MENUS
 	public void menuPrincipal() {
 		String strOpcion = "";
 		do {
 			System.out.println(
-					"------------- Inicio -------------\n" + "1. Añadir vehículo averiado.\n" + "2. Reparar vehículo.\n"
-							+ "3. Listar vehículos.\n" + "4. Entregar vehículo.\n" + "5. Terminar la jornada.");
-
+					"------------- Inicio -------------\n"
+			+ "1. Añadir vehículo averiado.\n" 
+		    + "2. Reparar vehículo.\n"
+	    	+ "3. Listar vehículos.\n" 
+		    + "4. Entregar vehículo.\n" 
+	    	+ "5. Terminar la jornada.");
+			br();
+			System.out.print("Opción: ");
+			strOpcion = sc.nextLine();
 			switch (strOpcion) {
 			case "1":
 				subMenuInsertarVehiculo();
@@ -41,17 +53,52 @@ public class Menus {
 			case "5":
 				System.out.print("\n" + "================================\n" + "|     ¡Hasta la próxima!       |\n"
 						+ "================================\n");
+				break;
+		    default:
+				System.out.println("Opción no valida.");
 			}
-		} while (strOpcion != "5");
-
+		} while (!strOpcion.equals("5"));
+		
 	}
 
 	public void subMenuInsertarVehiculo() {
-
+		System.out.println("¿Que tipo de vehículo es?\n" + "1. Coche.\n" + "2. Motocicleta.\n" + "3. Ciclomotor.");
+		String op = "";
+		do {
+			System.out.print("Opcion: ");
+			op = sc.nextLine();
+			br();
+		} while (!op.equals("1") && !op.equals("2") && !op.equals("3"));
+		System.out.println("Introduzca los datos del su vehículo:");
+		String matricula = VarUtils.pedirString("Matrícula");
+		String marca = VarUtils.pedirString("Marca");
+		String modelo = VarUtils.pedirString("Modelo");
+		String color = VarUtils.pedirString("Color");
+		double velocidadMaxima = VarUtils.pedirDouble("Velocidad Máxima");
+		String telefonoOwner = VarUtils.pedirString("Telefono del Dueño ");
+		if (op.equals("1")) {
+			taller.insertarVAveriado(new Coche(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
+		} else if (op.equals("2")) {
+			String marcaEscape = VarUtils.pedirString("Marca de Escape");
+			taller.insertarVAveriado(
+					new Motocicleta(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner, marcaEscape));
+		} else {
+			taller.insertarVAveriado(new Ciclomotor(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
+		}
+		br();
 	}
 
 	public void subMenuRepararVehiculo() {
-
+		String matricula="";
+		taller.listarVAveriados();
+		br();
+		System.out.print("Por favor escriba su matrícula: ");
+		do {
+			matricula = sc.nextLine();
+			if (matricula.isBlank())
+				System.out.println("No has introducido nada, vuelve a intentarlo.");
+		} while (matricula.isBlank());
+		taller.reparaVehiculo(matricula);
 	}
 
 	public void subMenuListarVehiculos() {
@@ -65,7 +112,7 @@ public class Menus {
 					+ "3. Lista de Vehículos reparados.\n"
 					+ "4. Volver al Menu.");
 			br();
-			System.out.println("Opción elegida:");
+			System.out.print("Opción elegida:");
 			strOpcion = sc.nextLine();
 			switch (strOpcion) {
 			case "1":

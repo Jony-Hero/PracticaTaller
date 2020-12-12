@@ -11,11 +11,11 @@ public abstract class Vehiculo implements Movible, Arrancable {
 	protected String modelo;
 	protected double velocidadActual;
 	protected double velocidadMaxima;
-	protected String telefonoDueño;
+	protected String telefonoOwner;
 
 	// Es el constructor de los atributos de Vehiculo.
 	public Vehiculo(String color, String matricula, String marca, String modelo, double velocidadMaxima,
-			String telefonoDueño) {
+			String telefonoOwner) {
 		super();
 		this.color = color;
 		this.matricula = matricula;
@@ -23,7 +23,7 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.modelo = modelo;
 		this.velocidadActual = 0;
 		this.velocidadMaxima = velocidadMaxima;
-		this.telefonoDueño = telefonoDueño;
+		this.telefonoOwner = telefonoOwner;
 	}
 
 	// Estos son los setter y getter de los atributos de Vehiculo.
@@ -76,11 +76,11 @@ public abstract class Vehiculo implements Movible, Arrancable {
 	}
 
 	public String getTelefonoDueño() {
-		return telefonoDueño;
+		return telefonoOwner;
 	}
 
 	public void setTelefonoDueño(String telefonoDueño) {
-		this.telefonoDueño = telefonoDueño;
+		this.telefonoOwner = telefonoDueño;
 	}
 
 	// Estos de aquí son los metodos que implementamos de las interfaces
@@ -96,14 +96,18 @@ public abstract class Vehiculo implements Movible, Arrancable {
 
 	@Override
 	public void acelerar(double v) {
+		System.out.println("La velocidad actual es de " + velocidadActual);
 		this.velocidadActual += v;
-		System.out.println("La velocidad Actual es de " + velocidadActual);
+		System.out.println();
+		System.out.println("Su nueva velocidad actual es de " + velocidadActual);
 	}
 
 	@Override
 	public void frenar(double v) {
+		System.out.println("La velocidad actual es de " + velocidadActual);
 		this.velocidadActual -= v;
-		System.out.println("La velocidad Actual es de " + velocidadActual);
+		System.out.println();
+		System.out.println("Su nueva velocidad actual es de " + velocidadActual);
 	}
 
 	@Override

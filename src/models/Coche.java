@@ -5,8 +5,8 @@ public class Coche extends Vehiculo {
 	private String estadoVentanillas;
 
 	public Coche(String color, String matricula, String marca, String modelo, double velocidadMaxima,
-			String telefonoDueño) {
-		super(color, matricula, marca, modelo, velocidadMaxima, telefonoDueño);
+			String telefonoOwner) {
+		super(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner);
 		this.estadoVentanillas = "Subidas";
 	}
 
@@ -32,7 +32,7 @@ public class Coche extends Vehiculo {
 	public String toString() {
 		return "Coche[Matricula: " + matricula + ", Marca: " + marca + ", Modelo: " + modelo + ", Ventanillas: "
 				+ estadoVentanillas + ", Color: " + color + ", Velocidad Actual: " + velocidadActual + "km/h"
-				+ ", Velocidad Máxima: " + velocidadMaxima + "Km/h" + ", Telefono Dueño: " + telefonoDueño + "]";
+				+ ", Velocidad Máxima: " + velocidadMaxima + "Km/h" + ", Telefono Dueño: " + telefonoOwner + "]";
 	}
 
 }

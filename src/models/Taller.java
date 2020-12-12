@@ -1,8 +1,9 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Scanner;
+
+import utils.VarUtils;
 
 /**
  * Clase que simula el funcionamiento de un taller.
@@ -23,6 +24,10 @@ public class Taller {
 	private ArrayList<Vehiculo> listaV_Reparados;
 	private static Scanner sc = new Scanner(System.in);
 
+	public void br() {
+		System.out.println();
+	}
+
 	/**
 	 * Constructor de la clase, reserva memoria para los ArrayList.
 	 */
@@ -37,12 +42,15 @@ public class Taller {
 	 */
 	public void listarVehiculos() {
 		int cont = 1;
+		if(!this.listaV_Averiados.isEmpty() || !this.listaV_Reparados.isEmpty()) {
 		for (Vehiculo vehiculo : listaV_Averiados) {
 			System.out.println(cont++ + ". " + vehiculo);
 		}
 		for (Vehiculo vehiculo : listaV_Reparados) {
 			System.out.println(cont++ + ". " + vehiculo);
 		}
+		} else 
+			System.out.println("No hay vehículos actualmente.");
 	}
 
 	/**
@@ -57,15 +65,19 @@ public class Taller {
 		else
 			listaV_Averiados.add(vehiculo);
 	}
-	
+
 	/**
 	 * Método que lista los vehículos que siguen averiados.
 	 */
 	public void listarVAveriados() {
 		int cont = 1;
+		if(!this.listaV_Averiados.isEmpty()) 
 		for (Vehiculo vehiculo : listaV_Averiados) {
 			System.out.println(cont++ + ". " + vehiculo);
+			
 		}
+		else
+			System.out.println("No hay vehículos reparados.");
 	}
 
 	/**
@@ -73,8 +85,12 @@ public class Taller {
 	 */
 	public void listarVReparados() {
 		int cont = 1;
-		for (Vehiculo vehiculo : listaV_Reparados) {
+		if(!this.listaV_Reparados.isEmpty()) {
+			for (Vehiculo vehiculo : listaV_Reparados) {
 			System.out.println(cont++ + ". " + vehiculo);
+			}
+		}else {
+			System.out.println("No hay vehículos reparados.");
 		}
 	}
 
@@ -83,18 +99,25 @@ public class Taller {
 	 */
 	public void listarMotocicletas() {
 		int cont = 1;
-
+		boolean hayMotos = false;
 		System.out.println("Motocicletas averiadas:");
+		
 		for (Vehiculo moto : listaV_Averiados) {
-			if (moto instanceof Motocicleta)
+			if (moto instanceof Motocicleta) {
 
 				System.out.println(cont++ + ". " + moto);
+				hayMotos = true;
 		}
-
+		}
 		System.out.println("\nMotocicletas reparadas:");
 		for (Vehiculo moto : listaV_Reparados) {
-			if (moto instanceof Motocicleta)
+			if (moto instanceof Motocicleta) {
 				System.out.println(cont++ + ". " + moto);
+				hayMotos=true;
+		}
+		}
+		if(!hayMotos)	{
+			System.out.println("Noy hay motos actualmente.");
 		}
 	}
 
@@ -126,7 +149,7 @@ public class Taller {
 	public void cambiarExcape(String matricula, String nuevoEscape) {
 		boolean existe = false; // Controla si el vehículo buscado existe o no
 		for (Vehiculo motocicleta : listaV_Averiados) {
-			if (motocicleta.getMatricula() == matricula) { // Si existe procede
+			if (motocicleta.getMatricula().equals(matricula)) { // Si existe procede
 				existe = true;
 				if (motocicleta instanceof Motocicleta) { // Comprueba si es una motocicleta
 					((Motocicleta) motocicleta).cambiarEscape(nuevoEscape);
@@ -181,28 +204,179 @@ public class Taller {
 			if (vehiculo.getMatricula().equals(matricula)) { // Si existe procede en Averiados
 				existe = true;
 				System.out.println("Su vehículo no está reparado, vuelva mañana por favor.");
-				System.out.println("Detalles del vehículo:\n" +vehiculo);
+				System.out.println("Detalles del vehículo:\n" + vehiculo);
 			}
 		}
 
 		for (Vehiculo vehiculo : listaV_Reparados) {
 			if (vehiculo.getMatricula().equals(matricula)) { // Si existe procede en Reparados
 				existe = true;
-				System.out.println("Detalles del vehículo:\n" +vehiculo);
+				System.out.println("Detalles del vehículo:\n" + vehiculo);
 				System.out.println("Desea recoger el vehículo:\n 1. Si o 2. No ");
 				do {
 					System.out.print("Opción: ");
 					opc = sc.nextLine();
 				} while (opc.equals("1") || opc.equals("2"));
-				if(opc.equals("1")) {
-				System.out.println("Muchas gracias por confiar ReparaTox :)");
-				listaV_Reparados.remove(vehiculo);
+				if (opc.equals("1")) {
+					System.out.println("Muchas gracias por confiar ReparaTox :)");
+					listaV_Reparados.remove(vehiculo);
 				}
 			}
 		}
 
 		if (!existe) { // Si no existe lo indica
 			System.out.println("¡FUERA DE AQUI!");
+		}
+	}
+
+	public void reparaVehiculo(String matricula) {
+		
+		boolean salir = false;
+		boolean existe = false;
+		String opc = "";
+		br();
+		
+
+		for (Vehiculo vehiculo : listaV_Averiados) {
+			if (vehiculo.getMatricula().equals(matricula)) {
+				do {
+					existe = true;
+					System.out.println("Vehículo seleccionado: \n" + vehiculo);
+					br();
+					if (vehiculo instanceof Motocicleta) {
+						System.out.println("Opciones disponibles:\n" 
+					            + "1. Acelerar.\n" 
+								+ "2. Frenar.\n"
+								+ "3. Cambiar escape.\n" 
+								+ "4. Marcar como reparado.\n"
+								+ "5. Detener proceso de reparación sin haber terminado.\n");
+						System.out.print("Opciones: ");
+						do {
+							opc = sc.nextLine();
+						} while (opc.equals("1") || opc.equals("2") || opc.equals("3") || opc.equals("4")
+								|| opc.equals("5"));
+						switch (opc) {
+						case "1":
+							double acelera = VarUtils.pedirDouble("Velocidad a acelerar");
+							vehiculo.acelerar(acelera);
+
+							break;
+						case "2":
+							double frena = VarUtils.pedirDouble("Velocidad a frenar");
+							vehiculo.frenar(frena);
+							break;
+
+						case "3":
+							String nuevaMarca = VarUtils.pedirString("Nombre de la nueva marca del escape");
+							((Motocicleta) vehiculo).cambiarEscape(nuevaMarca);
+							break;
+
+						case "4":
+							this.marcarVehiculoReparado(vehiculo);
+							System.out.println("El vehículo ha sido reparado.");
+
+							break;
+
+						case "5":
+							System.out.println("Su reparación a sido paralizada.");
+							salir= true;
+							break;
+
+						}
+
+					} else if (vehiculo instanceof Coche) {
+						System.out.println("Opciones disponibles:\n"
+					      + "1. Acelerar.\n" + "2. Frenar.\n"
+						  + "3. Subir ventanillas.\n" 
+					      + "4. Bajar ventanillas.\n" 
+						  + "5. Marcar como reparado.\n"
+						  + "6. Detener	proceso	de reparación	sin haber	 terminado.\n");
+
+						System.out.print("Opciones: ");
+						do {
+							opc = sc.nextLine();
+						} while (opc.equals("1") || opc.equals("2") || opc.equals("3") || opc.equals("4")
+								|| opc.equals("5") || opc.equals("6"));
+
+						switch (opc) {
+						case "1":
+							double acelera = VarUtils.pedirDouble("Velocidad a acelerar");
+							vehiculo.acelerar(acelera);
+
+							break;
+						case "2":
+							double frena = VarUtils.pedirDouble("Velocidad a frenar");
+							vehiculo.frenar(frena);
+							break;
+
+						case "3":
+							((Coche) vehiculo).subirVentanillas();
+
+							break;
+
+						case "4":
+							((Coche) vehiculo).bajarVentanillas();
+
+							break;
+
+						case "5":
+							this.marcarVehiculoReparado(vehiculo);
+							System.out.println("El vehículo ha sido reparado.");
+							break;
+
+						case "6":
+							System.out.println("Su reparación a sido paralizada.");
+							salir= true;
+							break;
+
+						}
+
+					} else {
+						System.out.println("Opciones disponibles:\n"
+								+ "1. Acelerar.\n" + "2. Frenar.\n"
+								+ "3. Marcar como reparado.\n"
+								+ "4. Detener	proceso	de reparación	sin haber	 terminado.\n");
+						System.out.print("Opciones: ");
+						do {
+							opc = sc.nextLine();
+						} while (opc.equals("1") || opc.equals("2") || opc.equals("3") || opc.equals("4"));
+						switch (opc) {
+						case "1":
+							double acelera = VarUtils.pedirDouble("Velocidad a acelerar");
+							vehiculo.acelerar(acelera);
+
+							break;
+						case "2":
+							double frena = VarUtils.pedirDouble("Velocidad a frenar");
+							vehiculo.frenar(frena);
+							break;
+
+						case "3":
+							this.marcarVehiculoReparado(vehiculo);
+							System.out.println("El vehículo ha sido reparado.");
+							break;
+
+						case "4":
+							System.out.println("Su reparación a sido paralizada.");
+							salir = true;
+
+							break;
+
+						}
+
+					}
+				} while (!salir);
+
+			} // fin if
+		}
+		for (Vehiculo vehiculoo : listaV_Reparados) {
+			if (vehiculoo.getMatricula().equals(matricula)) {
+				existe = true;
+				System.out.println("Su vehículo ya esta reparado.");
+			}
+		}
+		if (!existe) {
+			System.out.println("Su vehículo no se encuentra aquí lo sentimos.");
 		}
 	}
 
