@@ -38,6 +38,9 @@ public class Taller {
 		for (Vehiculo vehiculo : listaV_Averiados) {
 			System.out.println(cont++ + ". " + vehiculo);
 		}
+		for (Vehiculo vehiculo : listaV_Reparados) {
+			System.out.println(cont++ + ". " + vehiculo);
+		}
 	}
 
 	/**
