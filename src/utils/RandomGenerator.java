@@ -1,6 +1,7 @@
 package utils;
 
 import models.Ciclomotor;
+import models.Coche;
 import models.Motocicleta;
 
 /**
@@ -167,5 +168,7 @@ public class RandomGenerator {
 				this.strR_CiclomotorModel(), this.doubleR_VMax(), this.strR_Tlfmovil());
 	}
 
-	// TODO cocheR();
+	public Coche cocheR() {
+		return new Coche(this.strR_Color(), this.strR_Matricula(), this.strR_MarcaCoche(), this.strR_CocheModel(), this.doubleR_VMax(), this.strR_Tlfmovil());
+	}
 }
