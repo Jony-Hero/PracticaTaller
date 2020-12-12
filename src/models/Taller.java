@@ -505,9 +505,9 @@ public class Taller {
 						}
 					} while (!opcion.equals("7"));
 						
-				} else { // En caso de ser un Ciclomotor
+				} else if(vehiculo instanceof Ciclomotor) { // En caso de ser un Ciclomotor
 					
-					do {						
+					do {
 						System.out.println("Opciones disponibles:\n"
 								+ "1. Acelerar.\n"
 								+ "2. Frenar.\n"
@@ -517,7 +517,7 @@ public class Taller {
 						System.out.print("Opciones: ");
 						opcion = sc.nextLine();
 						br();
-
+						
 						switch (opcion) {
 						case "1":
 							double acelera = VarUtils.pedirDouble("Velocidad a acelerar");
@@ -539,14 +539,14 @@ public class Taller {
 							// Además, obligo que salga del menú
 							opcion = "5";
 							forceBreak = true;
+							break;
 						case "5":
 							System.out.println("Sesión de reparación finalizada.");
 							break;
 						default:
 							System.out.println("Opcion no válida.");	
-						}
-						
-					} while(opcion.equals("5"));
+						}					
+					} while(!opcion.equals("5"));
 				}
 
 			} // Fin caso existe averiado

@@ -299,9 +299,11 @@ public class Menus {
 		if(taller.checkMotocicletas()) { // Solo si hay motocicletas procede
 			
 			taller.listarMotocicletas();
-			System.out.println("\nSeleccione una motocicleta (inserte su matrícula): ");
+			br();
+			br();
 			
 			do { // Pide la matrícula
+				System.out.print("Matrícula: ");
 				mtrMoto = sc.nextLine();
 				if (mtrMoto.isBlank())
 					if (mtrMoto.isBlank())
@@ -309,11 +311,12 @@ public class Menus {
 			} while (mtrMoto.isBlank());
 			
 			do { // Pide la nueva marca de escape
+				System.out.print("Marca del escape: ");
 				marcaEscape = sc.nextLine();
 				if (marcaEscape.isBlank())
 					System.out.println("Introduzca una marca de escape, por favor.");
 			} while (marcaEscape.isBlank());
-			
+			br();
 			taller.cambiarExcape(mtrMoto, marcaEscape); // Pasa estos datos al taller
 			
 		} else // Si no hay motocicletas lo notifica
