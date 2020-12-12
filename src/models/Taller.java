@@ -13,7 +13,7 @@ import java.util.ConcurrentModificationException;
  * averiados. - Listar los vehículos almacenados. - TODO Completar
  * 
  * @author AdriGB
- * @author TODO Jonhy pon tu nombre aquí *
+ * @author TODO Jonhy pon tu nombre aquí
  *
  */
 public class Taller {
@@ -132,7 +132,7 @@ public class Taller {
 					listaV_Reparados.add(motocicleta);
 					listaV_Averiados.remove(motocicleta);
 					// Al eliminar el vehículo de la lista, no es posible seguir recorriendo el
-					// ArrayList
+					// ArrayList.
 					// Lanzaría una ConcurrentModificationException.
 					break;
 				} else {
