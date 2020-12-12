@@ -5,6 +5,24 @@ import java.util.Scanner;
 public class VarUtils {
 	private static Scanner sc = new Scanner (System.in);
 	
+	public static int pedirInt(String titulo) {
+		String aux = "";
+		boolean esDouble = false;
+		int num = 0;
+		do {
+			System.out.print(titulo + ": ");
+			aux = sc.nextLine();
+			try {
+				num = Integer.parseInt(aux);
+				esDouble = true;
+			} catch (Exception e) {
+				System.out.println("Debes introducir un valor numérico.");
+			}
+		} while (!esDouble);
+
+		return num;
+	}
+	
 	public static String pedirString(String titulo) {
 		String aux = "";
 		do {
@@ -33,7 +51,6 @@ public class VarUtils {
 		} while (!esDouble);
 
 		return num;
-
 	}
 
 }

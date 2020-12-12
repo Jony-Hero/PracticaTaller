@@ -134,9 +134,9 @@ public class Menus {
 		double velocidadMaxima = VarUtils.pedirDouble("Velocidad Máxima (0 para valor aleatorio)");	
 		if(velocidadMaxima == 0)
 			velocidadMaxima = rg.doubleR_VMax();
-		String telefonoOwner = VarUtils.pedirString("Telefono del Dueño ");
+		String telefonoOwner = Integer.toString(VarUtils.pedirInt("Telefono del Dueño (0 para valor aleatorio)"));
 		
-		if(telefonoOwner.contentEquals("auto"))
+		if(telefonoOwner.contentEquals("0"))
 			telefonoOwner = rg.strR_Tlfmovil(); // Tlf aleatorio
 		
 		if (op.equals("1")) { // Si es un coche

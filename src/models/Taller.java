@@ -265,6 +265,7 @@ public class Taller {
 			}
 		}
 		
+		boolean forceBreak = false;
 		for (Vehiculo motocicleta : listaV_Reparados) { // Analiza la lista de Reparados
 			
 			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Reparados notifica
@@ -289,6 +290,9 @@ public class Taller {
 				} else // en caso de que motocicleta no sea una instancia de Motocicleta
 					System.out.println("El vehículo seleccionado no es una motocicleta.");
 			}
+			
+			if(forceBreak)
+				break;
 		}
 		
 		if (!existe) { // Si no existe lo indica
@@ -318,6 +322,7 @@ public class Taller {
 	 * Método que marca un vehículo como averiado, es decir, lo pasa de Reparados a Averiados.
 	 * Este método cobra sentido cuando el usuario intenta cambiar el escape o reparar un vehículo
 	 * y este ya se encuentra reparado.
+	 * 
 	 * @param vehiculo
 	 */
 	public void marcarVehiculoAveriado(Vehiculo vehiculo) {
@@ -335,7 +340,7 @@ public class Taller {
 	/**
 	 * Método que entrega un vehículo reparado a su cliente. En caso de no estar
 	 * reparado, le indica que vuelva al día siguiente. En caso de no existir, lo
-	 * echa de la tienda..
+	 * echa de la tienda.
 	 * 
 	 * @param matricula
 	 */
@@ -392,6 +397,7 @@ public class Taller {
 		String opcion = "";
 		br();		
 
+		boolean forceBreak = false;
 		for (Vehiculo vehiculo : listaV_Averiados) {
 			if (vehiculo.getMatricula().equals(matricula)) { // En caso de que existe y esté averiado
 				existe = true;
@@ -438,6 +444,7 @@ public class Taller {
 							// No uso break, ya que si ya ha sido reparado, no volvería a reparar
 							// Además, obligo que salga del menú
 							opcion = "6";
+							forceBreak = true;
 						case "6":
 							System.out.println("Sesión de reparación finalizada.");
 							break;
@@ -489,6 +496,7 @@ public class Taller {
 							// No uso break, ya que si ya ha sido reparado, no volvería a reparar
 							// Además, obligo que salga del menú
 							opcion = "7";
+							forceBreak = true;
 						case "7":
 							System.out.println("Sesión de reparación finalizada.");
 							break;
@@ -526,11 +534,11 @@ public class Taller {
 							break;
 						case "4":
 							this.marcarVehiculoReparado(vehiculo);
-							System.out.println("El vehículo ha sido reparado.");
 							br();
 							// No uso break, ya que si ya ha sido reparado, no volvería a reparar
 							// Además, obligo que salga del menú
 							opcion = "5";
+							forceBreak = true;
 						case "5":
 							System.out.println("Sesión de reparación finalizada.");
 							break;
@@ -542,6 +550,11 @@ public class Taller {
 				}
 
 			} // Fin caso existe averiado
+			
+			// Si un vehículo ha sido marcado como averiado, forzosamente debemos abandonar el foreach
+			if(forceBreak)
+				break;
+			
 		} // Fin listaV_Averiados
 		
 		for (Vehiculo vehiculoo : listaV_Reparados) {
