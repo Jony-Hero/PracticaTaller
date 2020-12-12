@@ -148,6 +148,23 @@ public class Taller {
 		
 		return hayVehiculos;
 	}
+	
+	/**
+	 * Método que comprueba si hay vehículos en el taller.
+	 * 
+	 * @returns true Si hay vehículos.
+	 * @returns false Si no hay vehículos.
+	 */
+	public boolean checkVehiculosAveriados() {
+		
+		boolean hayVehiculos = false;
+
+		if(!this.listaV_Averiados.isEmpty())
+			hayVehiculos = true;
+		
+		return hayVehiculos;
+	}
+	
 
 	/**
 	 * Método que inserta un vehículo ingresado como Objeto de tipo vehículo en la lista de
@@ -242,30 +259,7 @@ public class Taller {
 		
 		boolean existe = false; // Boolean que controla si el vehículo buscado existe o no
 		
-		for (Vehiculo motocicleta : listaV_Averiados) { // Analiza la lista de Averiados
-			
-			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Averiados procede
-				
-				existe = true;
-				
-				if (motocicleta instanceof Motocicleta) { // Comprueba si es una motocicleta
-				
-					System.out.println(
-							  "El escape desechado es: " + ((Motocicleta) motocicleta).getMarcaEscape()
-							+ "\nEl nuevo escape es: " + nuevoEscape);
-					
-					((Motocicleta) motocicleta).cambiarEscape(nuevoEscape);
-
-					listaV_Reparados.add(motocicleta);
-					listaV_Averiados.remove(motocicleta);
-					
-					break;
-				} else
-					System.out.println("El vehículo seleccionado no es una motocicleta.");
-			}
-		}
-		
-		boolean forceBreak = false;
+		boolean forceBreak2 = false;
 		for (Vehiculo motocicleta : listaV_Reparados) { // Analiza la lista de Reparados
 			
 			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Reparados notifica
@@ -287,10 +281,35 @@ public class Taller {
 					if(strOption.equals("1")) // Si la respuesta es positiva, se marca como averiada
 						this.marcarVehiculoAveriado(motocicleta);
 					
+					forceBreak2 = true;
+					
 				} else // en caso de que motocicleta no sea una instancia de Motocicleta
 					System.out.println("El vehículo seleccionado no es una motocicleta.");
 			}
 			
+			if(forceBreak2)
+				break;
+		}
+		
+		boolean forceBreak = false;
+		for (Vehiculo motocicleta : listaV_Averiados) { // Analiza la lista de Averiados
+			
+			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Averiados procede
+				
+				existe = true;
+				
+				if (motocicleta instanceof Motocicleta) { // Comprueba si es una motocicleta
+					
+					((Motocicleta) motocicleta).cambiarEscape(nuevoEscape);
+
+					listaV_Reparados.add(motocicleta);
+					listaV_Averiados.remove(motocicleta);
+					
+					forceBreak = true;
+					break;
+				} else
+					System.out.println("El vehículo seleccionado no es una motocicleta.");
+			}
 			if(forceBreak)
 				break;
 		}
@@ -357,6 +376,7 @@ public class Taller {
 			}
 		}
 
+		boolean forceBreak = false;
 		for (Vehiculo vehiculo : listaV_Reparados) {
 			if (vehiculo.getMatricula().equals(matricula)) { // Si está registrado en Reparados, procede
 				
@@ -374,8 +394,11 @@ public class Taller {
 				if (opc.equals("1")) {
 					System.out.println("Muchas gracias por confiar ReparaTox :)");
 					listaV_Reparados.remove(vehiculo);
+					forceBreak = true;
 				}
 			}
+			if(forceBreak)
+				break;
 		}
 
 		if (!existe) { // Si no existe lo indica

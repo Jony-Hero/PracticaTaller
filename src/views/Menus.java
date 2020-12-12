@@ -185,7 +185,7 @@ public class Menus {
 		
 		String matricula="";
 
-		if(taller.checkVehiculos()) {
+		if(taller.checkVehiculosAveriados()) {
 			
 			taller.listarVAveriados();
 			br();
@@ -299,7 +299,6 @@ public class Menus {
 		if(taller.checkMotocicletas()) { // Solo si hay motocicletas procede
 			
 			taller.listarMotocicletas();
-			br();
 			br();
 			
 			do { // Pide la matrícula

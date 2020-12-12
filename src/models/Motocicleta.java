@@ -48,7 +48,12 @@ public class Motocicleta extends Vehiculo {
 	 * @param nuevaMarca Nueva marca que tendrá el escape.
 	 */
 	public void cambiarEscape(String nuevaMarca) {
+		System.out.println(
+				  "El escape desechado es: " + getMarcaEscape()
+				+ "\nEl nuevo escape es: " + nuevaMarca);
+		System.out.println();
 		marcaEscape = nuevaMarca;
+		System.out.println();
 	}
 
 	@Override

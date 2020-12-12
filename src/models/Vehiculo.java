@@ -101,8 +101,9 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		System.out.println();
 		System.out.println("Su nueva velocidad actual es de " + velocidadActual);
 		System.out.println();
-		
-		System.out.println("Está yendo marcha atrás :)");
+		if(velocidadActual < 0)
+			System.out.println("Está yendo marcha atrás :)");
+		System.out.println();
 	}
 
 	@Override
@@ -114,12 +115,14 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		
 		if(velocidadActual < 0)
 			System.out.println("Está yendo marcha atrás :)");
+		System.out.println();
 	}
 
 	@Override
 	public void frenarHastaParar() {
 		this.velocidadActual = 0;
 		System.out.println("El vehículo a frenado hasta pararse ");
+		System.out.println();
 	}
 
 }
