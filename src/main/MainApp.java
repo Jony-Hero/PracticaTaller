@@ -13,9 +13,6 @@ public class MainApp {
 				  "==================================\n"
 				+ "|    ¡BIENVENIDO A ReparaTox!    |\n"
 				+ "==================================\n");
-		
 		menu.menuPrincipal();
-		
-	}
-
+	}	
 }

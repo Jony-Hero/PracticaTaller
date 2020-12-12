@@ -20,7 +20,7 @@ public class TestTaller {
 		taller.insertarVAveriado(rg.motocicletaR());
 		taller.insertarVAveriado(rg.motocicletaR());
 		taller.insertarVAveriado(rg.motocicletaR());
-		pop.menuEntregarVehiculo();
+		pop.subMenuEntregarVehiculo();
 //		taller.marcarVehiculoReparado(coche);
 //		taller.listarVehiculos();
 //		taller.listarVReparados();

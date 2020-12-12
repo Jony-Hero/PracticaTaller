@@ -100,6 +100,9 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.velocidadActual += v;
 		System.out.println();
 		System.out.println("Su nueva velocidad actual es de " + velocidadActual);
+		System.out.println();
+		
+		System.out.println("Está yendo marcha atrás :)");
 	}
 
 	@Override
@@ -108,6 +111,9 @@ public abstract class Vehiculo implements Movible, Arrancable {
 		this.velocidadActual -= v;
 		System.out.println();
 		System.out.println("Su nueva velocidad actual es de " + velocidadActual);
+		
+		if(velocidadActual < 0)
+			System.out.println("Está yendo marcha atrás :)");
 	}
 
 	@Override
