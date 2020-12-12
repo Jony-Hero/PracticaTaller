@@ -32,7 +32,16 @@ public class Menus {
 
 	public void subMenuListarVehiculos() {
 		String strOpcion = "";
+		
+		
 		do {
+			System.out.println("Las opciones que tenemos son:\n"
+					+ "1. Lista de Vehículos.\n"
+					+ "2. Lista de Vehículos averiados.\n"
+					+ "3. Lista de Vehículos reparados.\n"
+					+ "4. Volver al Menu.");
+			br();
+			System.out.println("Opción elegida:");
 			strOpcion = sc.nextLine();
 			switch (strOpcion) {
 			case "1":
@@ -59,14 +68,26 @@ public class Menus {
 				break;
 			}
 
-		} while (strOpcion != "4");
+		} while (!strOpcion.equals("4"));
 
 	}
 
 	public void menuEntregarVehiculo() {
-
+		
+		String matricula = "";
+		taller.listarVehiculos();
+		br();
+		System.out.print("Por favor escriba su matrícula: ");
+		do {
+		 matricula = sc.nextLine();
+		 if(matricula.isBlank()) 
+		   System.out.println("No has introducido nada, vuelve a intentarlo.");
+		}while(matricula.isBlank());
+		taller.entregarVehiculo(matricula);
 	}
 
+	
+	
 	public void cambiarEscape() {
 		String mtrMoto;
 		String marcaEscape;

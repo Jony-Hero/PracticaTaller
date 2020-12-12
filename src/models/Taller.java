@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Scanner;
 
 /**
  * Clase que simula el funcionamiento de un taller.
@@ -20,6 +21,7 @@ public class Taller {
 
 	private ArrayList<Vehiculo> listaV_Averiados;
 	private ArrayList<Vehiculo> listaV_Reparados;
+	private static Scanner sc = new Scanner(System.in);
 
 	/**
 	 * Constructor de la clase, reserva memoria para los ArrayList.
@@ -172,21 +174,30 @@ public class Taller {
 	 * @param matricula
 	 */
 	public void entregarVehiculo(String matricula) {
-
+		String opc = "";
 		boolean existe = false; // Controla si el vehículo buscado existe o no
 
 		for (Vehiculo vehiculo : listaV_Averiados) {
-			if (vehiculo.getMatricula() == matricula) { // Si existe procede en Averiados
+			if (vehiculo.getMatricula().equals(matricula)) { // Si existe procede en Averiados
 				existe = true;
 				System.out.println("Su vehículo no está reparado, vuelva mañana por favor.");
+				System.out.println("Detalles del vehículo:\n" +vehiculo);
 			}
 		}
 
 		for (Vehiculo vehiculo : listaV_Reparados) {
-			if (vehiculo.getMatricula() == matricula) { // Si existe procede en Reparados
+			if (vehiculo.getMatricula().equals(matricula)) { // Si existe procede en Reparados
 				existe = true;
+				System.out.println("Detalles del vehículo:\n" +vehiculo);
+				System.out.println("Desea recoger el vehículo:\n 1. Si o 2. No ");
+				do {
+					System.out.print("Opción: ");
+					opc = sc.nextLine();
+				} while (opc.equals("1") || opc.equals("2"));
+				if(opc.equals("1")) {
 				System.out.println("Muchas gracias por confiar ReparaTox :)");
 				listaV_Reparados.remove(vehiculo);
+				}
 			}
 		}
 
