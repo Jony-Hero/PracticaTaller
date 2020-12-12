@@ -52,7 +52,7 @@ public class Taller {
 		else
 			listaV_Averiados.add(vehiculo);
 	}
-
+	
 	/**
 	 * Método que lista los vehículos que siguen averiados.
 	 */

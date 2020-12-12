@@ -15,6 +15,35 @@ public class Menus {
 	
 	// MENUS
 	public void menuPrincipal() {
+		String strOpcion = "";
+		do {
+			System.out.println("------------- Inicio -------------\n"
+					+ "1. Añadir vehículo averiado.\n"
+					+ "2. Reparar vehículo.\n"
+					+ "3. Listar vehículos.\n"
+					+ "4. Entregar vehículo.\n"
+					+ "5. Terminar la jornada.");
+			
+			switch (strOpcion) {
+			case "1":
+				subMenuInsertarVehiculo();
+				break;
+			case "2":
+				subMenuRepararVehiculo();
+				break;
+			case "3":
+				subMenuListarVehiculos();
+				break;
+			case "4":
+				menuEntregarVehiculo();
+				break;
+			case "5":
+				System.out.print("\n" 
+						+ "================================\n"
+						+ "|     ¡Hasta la próxima!       |\n"
+						+ "================================\n");
+			}
+		} while (strOpcion != "5");
 		
 	}
 	
@@ -34,7 +63,7 @@ public class Menus {
 		
 	}
 	
-	public void cambiarEscape() {		
+	public void cambiarEscape() {
 		String mtrMoto;
 		String marcaEscape;
 		
@@ -42,7 +71,7 @@ public class Menus {
 		System.out.println("\nSeleccione una motocicleta (inserte su matrícula): ");
 		
 		do {
-			mtrMoto = sc.nextLine();	
+			mtrMoto = sc.nextLine();
 			if(mtrMoto.isBlank())
 				System.out.println("Introduzca una matrícula, por favor.");
 		} while(mtrMoto.isBlank());
