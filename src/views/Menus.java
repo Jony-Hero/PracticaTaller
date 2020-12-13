@@ -157,6 +157,8 @@ public class Menus {
 				modelo = rg.strR_MotocicletaModel();
 			
 			String marcaEscape = VarUtils.pedirString("Marca de Escape");
+			if(marcaEscape.equals("auto"))
+				marcaEscape = rg.strR_MarcaEscape();
 			taller.insertarVAveriado(
 					new Motocicleta(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner, marcaEscape));
 			System.out.println("Vehículo añadido: " + taller.getUltimoVehiculoAveriadoInsertado());
