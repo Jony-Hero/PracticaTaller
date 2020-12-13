@@ -37,11 +37,16 @@ public class Taller {
 		listaV_Reparados = new ArrayList<Vehiculo>();
 	}
 	
+	/**
+	 * Método que agiliza le insercción de saltos de línea y facilita la lectura del
+	 * código.
+	 */
 	public void br() {
 		System.out.println();
 	}
 	
 	/**
+	 * MÉTODO DE CONTROL
 	 * Método que comprueba si la matrícula recibida es única (no existe ningún
 	 * vehículo registrado con esa matrícula.
 	 * 
@@ -67,26 +72,7 @@ public class Taller {
 	}
 	
 	/**
-	 * Método que lista todos los vehículos, lo hace sin tener en
-	 * cuenta si están o no averiados y sin tener en cuenta el tipo de vehículo.
-	 */
-	public void listarVehiculos() {
-		int cont = 1;
-		if (!this.listaV_Averiados.isEmpty() || !this.listaV_Reparados.isEmpty()) {
-			
-			for (Vehiculo vehiculo : listaV_Averiados) {
-				System.out.println(cont++ + ". " + vehiculo);
-			}
-			
-			for (Vehiculo vehiculo : listaV_Reparados) {
-				System.out.println(cont++ + ". " + vehiculo);
-			}
-			
-		} else
-			System.out.println("No hay vehículos actualmente.");
-	}
-	
-	/**
+	 * MÉTODO DE CONTROL
 	 * Método que devuleve el último vehículo añadido a la lista de vehículos
 	 * averiados.
 	 * 
@@ -97,6 +83,7 @@ public class Taller {
 	}
 	
 	/**
+	 * MÉTODO DE CONTROL
 	 * Método que devuleve el último vehículo añadido a la lista de vehículos
 	 * reparados.
 	 * 
@@ -107,6 +94,7 @@ public class Taller {
 	}
 	
 	/**
+	 * MÉTODO DE CONTROL
 	 * Método que comprueba si hay motocicletas en el taller.
 	 * 
 	 * @returns true Si hay motocicletas.
@@ -132,6 +120,7 @@ public class Taller {
 	}
 	
 	/**
+	 * MÉTODO DE CONTROL
 	 * Método que comprueba si hay vehículos en el taller.
 	 * 
 	 * @returns true Si hay vehículos.
@@ -150,6 +139,7 @@ public class Taller {
 	}
 	
 	/**
+	 * MÉTODO DE CONTROL
 	 * Método que comprueba si hay vehículos en el taller.
 	 * 
 	 * @returns true Si hay vehículos.
@@ -165,21 +155,82 @@ public class Taller {
 		return hayVehiculos;
 	}
 	
-
 	/**
+	 * MÉTODO DE CONTROL
+	 * Método que marca un vehículo como averiado, es decir, lo pasa de Reparados a Averiados.
+	 * Este método cobra sentido cuando el usuario intenta cambiar el escape o reparar un vehículo
+	 * y este ya se encuentra reparado.
+	 * 
+	 * @param vehiculo
+	 */
+	public void marcarVehiculoAveriado(Vehiculo vehiculo) {
+		
+		if(this.listaV_Reparados.contains(vehiculo)) {
+			
+			this.listaV_Averiados.add(vehiculo);
+			this.listaV_Reparados.remove(vehiculo);
+			System.out.println("El vehículo ha sido marcado como averiado.");
+			
+		} else
+			System.out.println("El vehículo indicado ya está marcado como averiado.");
+	}
+	
+	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
+	 * Método que pasa un coche averiado a la lista de reparados sin hacer ningún
+	 * cambio en él.
+	 * 
+	 * @param vehiculo Vehículo averiado que será puesto en vehículos reparados.
+	 */
+	public void marcarVehiculoReparado(Vehiculo vehiculo) {
+		
+		if (this.listaV_Averiados.contains(vehiculo)) {
+			
+			listaV_Reparados.add(vehiculo);
+			listaV_Averiados.remove(vehiculo);
+			System.out.println("El vehículo ha sido marcado como reparado.");
+			
+		} else
+			System.out.println("El vehículo indicado ya está marcado como reparado.");
+	}
+	
+	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que inserta un vehículo ingresado como Objeto de tipo vehículo en la lista de
 	 * vehículos averiados.
 	 * 
 	 * @param vehiculo Vehículo que será insertado.
 	 */
-	public void insertarVAveriado(Vehiculo vehiculo) {
+	public void insertarNuevoVehiculoAveriado(Vehiculo vehiculo) {
 		if (listaV_Averiados.contains(vehiculo))
 			System.out.println("El vehículo que se intenta insertar ya existe en la lista.");
 		else
 			listaV_Averiados.add(vehiculo);
 	}
+	
+	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
+	 * Método que lista todos los vehículos, lo hace sin tener en
+	 * cuenta si están o no averiados y sin tener en cuenta el tipo de vehículo.
+	 */
+	public void listarVehiculos() {
+		int cont = 1;
+		if (!this.listaV_Averiados.isEmpty() || !this.listaV_Reparados.isEmpty()) {
+			
+			for (Vehiculo vehiculo : listaV_Averiados) {
+				System.out.println(cont++ + ". " + vehiculo);
+			}
+			
+			for (Vehiculo vehiculo : listaV_Reparados) {
+				System.out.println(cont++ + ". " + vehiculo);
+			}
+			
+		} else
+			System.out.println("No hay vehículos actualmente.");
+	}
 
 	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que lista los vehículos que están averiados.
 	 */
 	public void listarVAveriados() {
@@ -193,6 +244,7 @@ public class Taller {
 	}
 
 	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que lista los vehículos que han sido reparados.
 	 */
 	public void listarVReparados() {
@@ -201,12 +253,13 @@ public class Taller {
 			for (Vehiculo vehiculo : listaV_Reparados) {
 			System.out.println(cont++ + ". " + vehiculo);
 			}
-		}else {
+		} else {
 			System.out.println("No hay vehículos reparados.");
 		}
 	}
 
 	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que lista todas las motocicletas, tanto reparadas como averiadas.
 	 */
 	public void listarMotocicletas() {
@@ -241,6 +294,7 @@ public class Taller {
 	}
 
 	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que cambia el escape de una Motocicleta.
 	 * 
 	 * Son ingresados la matrícula del vehículo y la marca del nuevo escape. Si la
@@ -259,7 +313,7 @@ public class Taller {
 		
 		boolean existe = false; // Boolean que controla si el vehículo buscado existe o no
 		
-		boolean forceBreak2 = false;
+		boolean forceBreak2 = false; // Controla ConcurrentModificationException
 		for (Vehiculo motocicleta : listaV_Reparados) { // Analiza la lista de Reparados
 			
 			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Reparados notifica
@@ -286,12 +340,12 @@ public class Taller {
 				} else // en caso de que motocicleta no sea una instancia de Motocicleta
 					System.out.println("El vehículo seleccionado no es una motocicleta.");
 			}
-			
+			// Al ser true dejará de recorrer el Array, lo que evita una ConcurrentModificationException.
 			if(forceBreak2)
 				break;
 		}
 		
-		boolean forceBreak = false;
+		boolean forceBreak = false; // Controla ConcurrentModificationException
 		for (Vehiculo motocicleta : listaV_Averiados) { // Analiza la lista de Averiados
 			
 			if (motocicleta.getMatricula().equals(matricula)) { // Si existe en listaV_Averiados procede
@@ -310,6 +364,7 @@ public class Taller {
 				} else
 					System.out.println("El vehículo seleccionado no es una motocicleta.");
 			}
+			// Al ser true dejará de recorrer el Array, lo que evita una ConcurrentModificationException.
 			if(forceBreak)
 				break;
 		}
@@ -320,43 +375,7 @@ public class Taller {
 	}
 
 	/**
-	 * Método que pasa un coche averiado a la lista de reparados sin hacer ningún
-	 * cambio en él.
-	 * 
-	 * @param vehiculo Vehículo averiado que será puesto en vehículos reparados.
-	 */
-	public void marcarVehiculoReparado(Vehiculo vehiculo) {
-		
-		if (this.listaV_Averiados.contains(vehiculo)) {
-			
-			listaV_Reparados.add(vehiculo);
-			listaV_Averiados.remove(vehiculo);
-			System.out.println("El vehículo ha sido marcado como reparado.");
-			
-		} else
-			System.out.println("El vehículo indicado ya está marcado como reparado.");
-	}
-	
-	/**
-	 * Método que marca un vehículo como averiado, es decir, lo pasa de Reparados a Averiados.
-	 * Este método cobra sentido cuando el usuario intenta cambiar el escape o reparar un vehículo
-	 * y este ya se encuentra reparado.
-	 * 
-	 * @param vehiculo
-	 */
-	public void marcarVehiculoAveriado(Vehiculo vehiculo) {
-		
-		if(this.listaV_Reparados.contains(vehiculo)) {
-			
-			this.listaV_Averiados.add(vehiculo);
-			this.listaV_Reparados.remove(vehiculo);
-			System.out.println("El vehículo ha sido marcado como averiado.");
-			
-		} else
-			System.out.println("El vehículo indicado ya está marcado como averiado.");
-	}
-
-	/**
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
 	 * Método que entrega un vehículo reparado a su cliente. En caso de no estar
 	 * reparado, le indica que vuelva al día siguiente. En caso de no existir, lo
 	 * echa de la tienda.
@@ -376,7 +395,7 @@ public class Taller {
 			}
 		}
 
-		boolean forceBreak = false;
+		boolean forceBreak = false; // Controla ConcurrentModificationException
 		for (Vehiculo vehiculo : listaV_Reparados) {
 			if (vehiculo.getMatricula().equals(matricula)) { // Si está registrado en Reparados, procede
 				
@@ -397,6 +416,7 @@ public class Taller {
 					forceBreak = true;
 				}
 			}
+			// Al ser true dejará de recorrer el Array, lo que evita una ConcurrentModificationException.
 			if(forceBreak)
 				break;
 		}
@@ -407,12 +427,19 @@ public class Taller {
 	}
 
 	/**
-	 * Método que recibe una matrícula.
-	 * En caso de que esta matrícula pertenezca un vehículo comprobará de qué tipo es.
+	 * MÉTODO ESPECIFICADO EN REQUISITOS
+	 * Método que recibe una matrícula y muestra
+	 * un menú. En caso de que esta matrícula pertenezca un vehículo comprobará de
+	 * qué tipo es.
 	 * 
-	 * Para cada tipo de vehículo se ha hecho un menú de repacarión diferente.
+	 * Para cada tipo de vehículo se ha hecho un menú de repacarión diferente. Cada
+	 * menú permite acceder a los métodos de reparacíon que corresponden a cada tipo
+	 * de vehículo.
 	 * 
-	 * @param matricula
+	 * El inicio de cada casuística ha sido marcada con una línea formada con
+	 * guiones medios.
+	 * 
+	 * @param matricula Matrícula del vehículo a reparar.
 	 */
 	public void reparaVehiculo(String matricula) {
 		
@@ -420,7 +447,7 @@ public class Taller {
 		String opcion = "";
 		br();		
 
-		boolean forceBreak = false;
+		boolean forceBreak = false; // Controla ConcurrentModificationException
 		for (Vehiculo vehiculo : listaV_Averiados) {
 			if (vehiculo.getMatricula().equals(matricula)) { // En caso de que existe y esté averiado
 				existe = true;
@@ -428,7 +455,7 @@ public class Taller {
 				System.out.println("Vehículo seleccionado: \n" + vehiculo);
 				br();
 
-				if (vehiculo instanceof Motocicleta) { // En caso de ser una Motocicleta
+				if (vehiculo instanceof Motocicleta) { // En caso de ser una Motocicleta --------------------------
 					do {
 						System.out.println("Opciones disponibles:\n" 
 					            + "1. Acelerar.\n" 
@@ -464,9 +491,8 @@ public class Taller {
 							this.marcarVehiculoReparado(vehiculo);
 							System.out.println("El vehículo ha sido reparado.");
 							br();
-							// No uso break, ya que si ya ha sido reparado, no volvería a reparar
-							// Además, obligo que salga del menú
 							opcion = "6";
+							// 
 							forceBreak = true;
 						case "6":
 							System.out.println("Sesión de reparación finalizada.");
@@ -476,7 +502,7 @@ public class Taller {
 						}
 					} while (!opcion.equals("6"));
 					
-				} else if (vehiculo instanceof Coche) { // En caso de ser un Coche
+				} else if (vehiculo instanceof Coche) { // En caso de ser un Coche ---------------------------------
 					do {
 						System.out.println("Opciones disponibles:\n"
 					      + "1. Acelerar.\n"
@@ -528,7 +554,7 @@ public class Taller {
 						}
 					} while (!opcion.equals("7"));
 						
-				} else if(vehiculo instanceof Ciclomotor) { // En caso de ser un Ciclomotor
+				} else if(vehiculo instanceof Ciclomotor) { // En caso de ser un Ciclomotor ------------------------
 					
 					do {
 						System.out.println("Opciones disponibles:\n"
@@ -575,6 +601,7 @@ public class Taller {
 			} // Fin caso existe averiado
 			
 			// Si un vehículo ha sido marcado como averiado, forzosamente debemos abandonar el foreach
+			// Al ser true dejará de recorrer el Array, lo que evita una ConcurrentModificationException.
 			if(forceBreak)
 				break;
 			
@@ -587,7 +614,7 @@ public class Taller {
 			}
 		}
 		
-		if (!existe) { // En caso de que no exista
+		if (!existe) { // En caso de que no exista -------------------------------------------------------------------
 			System.out.println("Su vehículo no se encuentra aquí lo sentimos.");
 		}
 	}

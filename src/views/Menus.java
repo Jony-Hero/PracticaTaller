@@ -9,24 +9,50 @@ import models.Taller;
 import utils.RandomGenerator;
 import utils.VarUtils;
 
+/**
+ * Clase que contiene todos los menús del proyecto.
+ * 
+ * Cabe destacar que el método menuPrincipal() es la raíz en la que todos los
+ * demás subMenús son invocados.
+ * 
+ * @author AdriGB
+ * @author Jonhy
+ *
+ */
 public class Menus {
-
+	
 	private static Scanner sc = new Scanner(System.in);
 	private static RandomGenerator rg = new RandomGenerator();
 	private Taller taller;
-
+	
 	public Menus(Taller taller) {
 		this.taller = taller;
 	}
-
+	
+	/**
+	 * Método que agiliza le insercción de saltos de línea y facilita la lectura del
+	 * código.
+	 */
 	public void br() {
 		System.out.println();
 	}	
-
+	
 	/**
+	 * Método que muestra el menú principal. Es el hub principal en el que todas las
+	 * funcionalidades de este proyecte convergen.
 	 * 
+	 * Para poder testear todo durante la ejecución se pueden seguir estos pasos:
+	 *  - Tratar de acceder a las opciones 2, 3, 4 o 5 sin vehículos.
+	 *  - Crear un vehículo de cada tipo, excepto motocicleta.
+	 *  - Tratar de acceder a la opción 3.
+	 *  - Crear dos motocicletas.
+	 *  - Cambiar el escape de una motocicleta.
+	 *  - Usar todas las opciones del submenú 4, listar.
+	 *  - Reaparar (usando todas las opciones) el resto de vehículos.
+	 *  - Entregar todos los vehículos.
 	 */
 	public void menuPrincipal() {
+		
 		String strOpcion = "";
 		do {
 			System.out.println(
@@ -37,9 +63,10 @@ public class Menus {
 	    	+ "4. Listar vehículos.\n" 
 		    + "5. Entregar vehículo.\n" 
 	    	+ "6. Terminar la jornada.");
-			br();
 			System.out.print("Opción: ");
 			strOpcion = sc.nextLine();
+			br();
+			
 			switch (strOpcion) {
 			case "1":
 				br();
@@ -79,11 +106,12 @@ public class Menus {
 	}
 
 	/**
-	 * Método que muestra un menú para seleccionar el tipo de vehículo a insertar
-	 * además de obtener sus atributos.
+	 * Método que muestra un menú para seleccionar el tipo de vehículo a insertar.
+	 * Posteriormente obtiene sus atributos.
 	 * 
-	 * Esta información se la pasará al taller para que este inserte un vehículo en
-	 * su lista de vehículos averiados.
+	 * Estos atributos se usarán para instanciar un nuevo vehículo del tipo
+	 * especificado, será pasado al taller para que este lo inserte en su lista de
+	 * vehículos averiados.
 	 */
 	public void subMenuInsertarVehiculo() {
 		
@@ -93,7 +121,7 @@ public class Menus {
 				+ "3. Ciclomotor.");
 		
 		String op = "";
-		do {
+		do { // Determinamos el tipo de vehículo
 			
 			System.out.print("Opcion: ");
 			op = sc.nextLine();
@@ -105,9 +133,10 @@ public class Menus {
 		
 		System.out.println("Introduzca los datos del su vehículo: (Escribir \"auto\" para valores aleatorios)");
 		
+		// Atributo matrícula, necesaria para todos los vehículos
 		String matricula;
 		boolean esUnica = false;
-		do {
+		do { // Nos aseguramos de que la matrícula sea única entre los coches registrados
 			
 			matricula = VarUtils.pedirString("Matrícula");
 			esUnica = taller.mtrIsUnica(matricula);
@@ -117,60 +146,62 @@ public class Menus {
 			
 		} while(!esUnica);
 		
-		if(matricula.contentEquals("auto")) { // Matricula aleatoria
+		if(matricula.contentEquals("auto")) { // Matricula aleatoria, también será única
 			do {
 				matricula = rg.strR_Matricula();
 				esUnica = taller.mtrIsUnica(matricula);
 			} while(!esUnica);
 		}
 		
+		// Atributos que pueden variar (durante la generación aleatoria)
 		String marca = VarUtils.pedirString("Marca");
 		String modelo = VarUtils.pedirString("Modelo");
-		String color = VarUtils.pedirString("Color");
 		
-		if(color.contentEquals("auto")) // Color aleatorio
+		// Atributos que no varian (durante la generación aleatoria)
+		String color = VarUtils.pedirString("Color");		
+		if(color.contentEquals("auto")) // Color aleatorio (si se escribe "auto")
 			color = rg.strR_Color();
 		
 		double velocidadMaxima = VarUtils.pedirDouble("Velocidad Máxima (0 para valor aleatorio)");	
 		if(velocidadMaxima == 0)
-			velocidadMaxima = rg.doubleR_VMax();
-		String telefonoOwner = Integer.toString(VarUtils.pedirInt("Telefono del Dueño (0 para valor aleatorio)"));
+			velocidadMaxima = rg.doubleR_VMax(); // Vekicudad Máxima aleatoria (si se escribe "0")
 		
+		String telefonoOwner = Integer.toString(VarUtils.pedirInt("Telefono del Dueño (0 para valor aleatorio)"));		
 		if(telefonoOwner.contentEquals("0"))
-			telefonoOwner = rg.strR_Tlfmovil(); // Tlf aleatorio
+			telefonoOwner = rg.strR_Tlfmovil(); // Tlf aleatorio (si se escribe "0")
 		
-		if (op.equals("1")) { // Si es un coche
+		if (op.equals("1")) { // Si es un coche ------------------------------------------------
 			
-			if(marca.contentEquals("auto")) // Marca aleatoria de coche
+			if(marca.contentEquals("auto")) // Marca aleatoria de coche (si se escribe "auto")
 				marca = rg.strR_MarcaCoche();
-			if(modelo.contentEquals("auto")) // Modelo aleatorio de coche
+			if(modelo.contentEquals("auto")) // Modelo aleatorio de coche (si se escribe "auto")
 				modelo = rg.strR_CocheModel();
 			
-			taller.insertarVAveriado(new Coche(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
+			taller.insertarNuevoVehiculoAveriado(new Coche(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
 			System.out.println("Vehículo añadido: " + taller.getUltimoVehiculoAveriadoInsertado());
 			
-		} else if (op.equals("2")) { // Si es una motocicleta
+		} else if (op.equals("2")) { // Si es una motocicleta ----------------------------------
 			
-			if(marca.contentEquals("auto")) // Marca aleatoria de motocicleta
+			if(marca.contentEquals("auto")) // Marca aleatoria de motocicleta (si se escribe "auto")
 				marca = rg.strR_MarcaMotocicleta();
-			if(modelo.contentEquals("auto")) // Modelo aleatorio de motocicleta
+			if(modelo.contentEquals("auto")) // Modelo aleatorio de motocicleta (si se escribe "auto")
 				modelo = rg.strR_MotocicletaModel();
 			
 			String marcaEscape = VarUtils.pedirString("Marca de Escape");
-			if(marcaEscape.equals("auto"))
+			if(marcaEscape.equals("auto")) // Marca de Escpae aleatoria (si se escribe "auto")
 				marcaEscape = rg.strR_MarcaEscape();
-			taller.insertarVAveriado(
+			taller.insertarNuevoVehiculoAveriado(
 					new Motocicleta(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner, marcaEscape));
 			System.out.println("Vehículo añadido: " + taller.getUltimoVehiculoAveriadoInsertado());
 			
-		} else { // Si es un ciclomotor
+		} else { // Si es un ciclomotor --------------------------------------------------------
 			if(marca.contentEquals("auto")) // Marca aleatoria de ciclomotor
 				marca = rg.strR_MarcaCiclomotor();
 			if(modelo.contentEquals("auto")) // Modelo aleatorio de ciclomotor
 				modelo = rg.strR_CiclomotorModel();
 			
 			// Se pasa el nuevo vehículo al taller
-			taller.insertarVAveriado(new Ciclomotor(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
+			taller.insertarNuevoVehiculoAveriado(new Ciclomotor(color, matricula, marca, modelo, velocidadMaxima, telefonoOwner));
 			System.out.println("Vehículo añadido: " + taller.getUltimoVehiculoAveriadoInsertado());
 		}
 		br();
@@ -187,7 +218,7 @@ public class Menus {
 		
 		String matricula="";
 
-		if(taller.checkVehiculosAveriados()) {
+		if(taller.checkVehiculosAveriados()) { // Solo si hay vehículos averiados procede
 			
 			taller.listarVAveriados();
 			br();
@@ -215,7 +246,7 @@ public class Menus {
 	public void subMenuListarVehiculos() {
 		
 		String strOpcion = "";
-		if(taller.checkVehiculos()) {
+		if(taller.checkVehiculos()) { // Solo si hay vehículos procede
 			do {
 				System.out.println("Las opciones que tenemos son:\n"
 						+ "1. Lista de Vehículos.\n"
@@ -267,7 +298,10 @@ public class Menus {
 	public void subMenuEntregarVehiculo() {
 		
 		String matricula = "";
-		if(taller.checkVehiculos()) {
+		
+		// No restrinjo el método a vehículos reparados para poder
+		// mostrar el mensaje "Su vehículo no está reparado, vuelva mañana por favor"
+		if(taller.checkVehiculos()) { // Solo si hay vehiculos
 			
 			taller.listarVehiculos();
 			br();

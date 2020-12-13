@@ -1,15 +1,14 @@
 package utils;
 
-import models.Ciclomotor;
-import models.Coche;
-import models.Motocicleta;
-
 /**
  * Clase orientada a generar aleatoriamente valores para los constructores de
  * las clases de este proyecto.
- * TODO No incluir en la entrega.
  * 
- * @author adrig
+ * Está implmentado durante la insercción de nuevos vehículos al taller.
+ * Leer mensajes durante la insercción para más información.
+ * 
+ * @author AdriGB
+ * @author Jhony
  */
 public class RandomGenerator {
 
@@ -144,31 +143,5 @@ public class RandomGenerator {
 	 */
 	public double doubleR_VMax() {
 		return 50 + Math.random() * 200;
-	}
-
-	/**
-	 * Método que devuelve un motocicleta aleatoria. Ingresa en el constructor
-	 * atributos aleatorios generados con esta misma clase.
-	 * 
-	 * @return new Motocicleta Motocicleta que será aleatoria.
-	 */
-	public Motocicleta motocicletaR() {
-		return new Motocicleta(this.strR_Color(), this.strR_Matricula(), this.strR_MarcaMotocicleta(),
-				this.strR_MotocicletaModel(), this.doubleR_VMax(), this.strR_Tlfmovil(), this.strR_MarcaEscape());
-	}
-
-	/**
-	 * Método que devuelve un ciclomotor aleatorio. Ingresa en el constructor
-	 * atributos aleatorios generados con esta misma clase.
-	 * 
-	 * @return new Ciclomotor Ciclomotor que será aleatorio.
-	 */
-	public Ciclomotor ciclomotorR() {
-		return new Ciclomotor(this.strR_Color(), this.strR_Matricula(), this.strR_MarcaCiclomotor(),
-				this.strR_CiclomotorModel(), this.doubleR_VMax(), this.strR_Tlfmovil());
-	}
-
-	public Coche cocheR() {
-		return new Coche(this.strR_Color(), this.strR_Matricula(), this.strR_MarcaCoche(), this.strR_CocheModel(), this.doubleR_VMax(), this.strR_Tlfmovil());
 	}
 }

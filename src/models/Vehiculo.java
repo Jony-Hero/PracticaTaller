@@ -44,7 +44,7 @@ public abstract class Vehiculo implements Movible, Arrancable {
      * código.
      */
 	public void br() {
-		br();
+		System.out.println();
 	}
 	
 	
