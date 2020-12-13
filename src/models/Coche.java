@@ -20,10 +20,10 @@ public class Coche extends Vehiculo {
 	 * inicial de las ventanillas.
 	 * 
 	 * @param color Color del vehículo.
-	 * @param matricula Matrículo del vehículo.
+	 * @param matricula Matrícula del vehículo.
 	 * @param marca Marca del vehículo.
 	 * @param modelo Modelo del vehículo.
-	 * @param velocidadMaxima Velocidad máxma del vehículo.
+	 * @param velocidadMaxima Velocidad máxima del vehículo.
 	 * @param telefonoOwner Teléfono del dueño del vehículo.
 	 */
 	public Coche(String color, String matricula, String marca, String modelo, double velocidadMaxima,

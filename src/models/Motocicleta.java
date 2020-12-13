@@ -16,14 +16,14 @@ public class Motocicleta extends Vehiculo {
 	private String marcaEscape;
 
 	/**
-	 * Constructor que ingresa los atributos heredads y, además, ingresa la marca
+	 * Constructor que ingresa los atributos heredados y, además, ingresa la marca
 	 * del escape.
 	 * 
 	 * @param color Color del vehículo.
-	 * @param matricula Matrículo del vehículo.
+	 * @param matricula Matrícula del vehículo.
 	 * @param marca Marca del vehículo.
 	 * @param modelo Modelo del vehículo.
-	 * @param velocidadMaxima Velocidad máxma del vehículo.
+	 * @param velocidadMaxima Velocidad máxima del vehículo.
 	 * @param telefonoOwner Teléfono del dueño del vehículo.
 	 * @param marcaEscape Marca del escape que tendrá la moto.
 	 */
